@@ -89,7 +89,7 @@ jobs:
         run: |
           docker run --name tb-formatter --privileged \
             --entrypoint=/bin/sh ghcr.io/tigerbeetle/tigerbeetle:${{ needs.read-versions.outputs.tigerbeetle }} -c \
-            "mkdir -p /data && /tigerbeetle format --cluster=0 --replica=0 --replica-count=1 /data/0_0.tigerbeetle"
+            "mkdir -p /data && /tigerbeetle format --cluster=1 --replica=0 --replica-count=1 /data/0_0.tigerbeetle"
 
           docker cp tb-formatter:/data/0_0.tigerbeetle ./tigerbeetle/
           docker rm tb-formatter

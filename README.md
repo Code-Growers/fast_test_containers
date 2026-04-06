@@ -18,8 +18,6 @@ A PostgreSQL container with pre-initialized data directory.
 
 **Connection:** `postgresql://postgres:postgres@localhost:5432/postgres`
 
-See [postgresql/README.md](postgresql/README.md) for details.
-
 ### TigerBeetle
 
 A TigerBeetle container with pre-formatted data file.
@@ -28,9 +26,7 @@ A TigerBeetle container with pre-formatted data file.
 
 **Startup time:** ~5 seconds (avoids the expensive format step at runtime)
 
-**Connection:** Port `3000`, Cluster `0`
-
-See [tigerbeetle/README.md](tigerbeetle/README.md) for details.
+**Connection:** Port `3000`, Cluster `1`
 
 ## The Pattern
 
