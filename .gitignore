@@ -1,0 +1,4 @@
+.direnv
+
+# TigerBeetle pre-formatted data files (generated during build)
+*.tigerbeetle
