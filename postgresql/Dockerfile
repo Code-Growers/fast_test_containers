@@ -1,7 +1,9 @@
 # syntax=docker/dockerfile:1
 
+ARG PG_VERSION=17.4
+
 # Stage 1: Initialize PostgreSQL data directory
-FROM postgres:17.4-alpine AS initializer
+FROM postgres:${PG_VERSION}-alpine AS initializer
 
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=postgres
@@ -23,7 +25,8 @@ RUN docker-entrypoint.sh postgres --version \
     && rm -rf /var/lib/postgresql/data/log/*
 
 # Stage 2: Final minimal image with pre-initialized data
-FROM postgres:17.4-alpine
+ARG PG_VERSION
+FROM postgres:${PG_VERSION}-alpine
 
 ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=postgres

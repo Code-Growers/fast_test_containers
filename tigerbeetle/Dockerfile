@@ -1,8 +1,10 @@
-FROM ghcr.io/tigerbeetle/tigerbeetle:latest
+ARG TB_VERSION=0.16.78
+
+FROM ghcr.io/tigerbeetle/tigerbeetle:${TB_VERSION}
 
 # Copy pre-formatted data file
 # This file was created by running:
-#   docker run --rm --privileged --entrypoint=/bin/sh ghcr.io/tigerbeetle/tigerbeetle:latest -c \
+#   docker run --rm --privileged --entrypoint=/bin/sh ghcr.io/tigerbeetle/tigerbeetle:${TB_VERSION} -c \
 #     "mkdir -p /data && /tigerbeetle format --cluster=0 --replica=0 --replica-count=1 /data/0_0.tigerbeetle && cat /data/0_0.tigerbeetle" \
 #     > 0_0.tigerbeetle
 COPY 0_0.tigerbeetle /data/0_0.tigerbeetle
