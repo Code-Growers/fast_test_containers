@@ -16,7 +16,7 @@ A PostgreSQL container with pre-initialized data directory.
 
 **Startup time:** ~1 second (vs 3-5 seconds for standard container)
 
-**Connection:** `postgresql://test:test@localhost:5432/test`
+**Connection:** `postgresql://postgres:postgres@localhost:5432/postgres`
 
 See [postgresql/README.md](postgresql/README.md) for details.
 

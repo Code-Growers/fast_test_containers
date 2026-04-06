@@ -37,6 +37,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -54,7 +57,7 @@ jobs:
           push: true
           tags: ghcr.io/code-growers/fast_test_containers/postgresql-test:${{ matrix.version }}
           build-args: PG_VERSION=${{ matrix.version }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -68,6 +71,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -95,6 +101,6 @@ jobs:
           push: true
           tags: ghcr.io/code-growers/fast_test_containers/tigerbeetle-test:${{ needs.read-versions.outputs.tigerbeetle }}
           build-args: TB_VERSION=${{ needs.read-versions.outputs.tigerbeetle }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
