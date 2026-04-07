@@ -16,6 +16,14 @@ RUN docker-entrypoint.sh postgres --version \
     && su - postgres -c "pg_ctl initdb -D /var/lib/postgresql/data" \
     && echo "host all all all scram-sha-256" >> /var/lib/postgresql/data/pg_hba.conf \
     && echo "listen_addresses='*'" >> /var/lib/postgresql/data/postgresql.conf \
+    && echo "fsync = off" >> /var/lib/postgresql/data/postgresql.conf \
+    && echo "synchronous_commit = off" >> /var/lib/postgresql/data/postgresql.conf \
+    && echo "full_page_writes = off" >> /var/lib/postgresql/data/postgresql.conf \
+    && echo "wal_level = minimal" >> /var/lib/postgresql/data/postgresql.conf \
+    && echo "max_wal_senders = 0" >> /var/lib/postgresql/data/postgresql.conf \
+    && echo "autovacuum = off" >> /var/lib/postgresql/data/postgresql.conf \
+    && echo "log_statement = 'none'" >> /var/lib/postgresql/data/postgresql.conf \
+    && echo "log_min_duration_statement = -1" >> /var/lib/postgresql/data/postgresql.conf \
     && mkdir -p /var/run/postgresql && chown postgres:postgres /var/run/postgresql \
     && su - postgres -c "pg_ctl start -D /var/lib/postgresql/data" \
     && sleep 2 \
