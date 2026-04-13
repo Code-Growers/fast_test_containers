@@ -28,6 +28,16 @@ A TigerBeetle container with pre-formatted data file.
 
 **Connection:** Port `3000`, Cluster `1`
 
+### Keycloak
+
+A Keycloak container with pre-initialized H2 database.
+
+**Optimization:** The H2 database is initialized during the Docker build, so at runtime Keycloak just starts the server without any initialization.
+
+**Startup time:** ~2 seconds (vs ~30 seconds for standard container)
+
+**Connection:** Port `8080`, Realm `master`, User `admin`, Password `admin`
+
 ## The Pattern
 
 Both containers follow the same optimization pattern:

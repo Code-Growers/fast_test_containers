@@ -1,4 +1,5 @@
 {
   "postgresql": ["18.3", "17.9", "16.13"],
-  "tigerbeetle": "0.16.78"
+  "keycloak": ["26.6.0"],
+  "tigerbeetle": ["0.16.78"]
 }
