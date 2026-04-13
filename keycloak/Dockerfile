@@ -35,7 +35,7 @@ RUN /bin/bash -c ' \
     /opt/keycloak/bin/kc.sh start --optimized > /tmp/kc.log 2>&1 & \
     KC_PID=$!; \
     echo "Keycloak PID: $KC_PID"; \
-    timeout=120; elapsed=0; \
+    timeout=240; elapsed=0; \
     while [ $elapsed -lt $timeout ]; do \
         if grep -q "started in" /tmp/kc.log 2>/dev/null; then \
             echo "Keycloak initialized — shutting down."; \
