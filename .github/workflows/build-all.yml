@@ -93,7 +93,7 @@ jobs:
       - name: Generate TigerBeetle data file
         run: |
           docker run --name tb-formatter --privileged \
-            --entrypoint=/bin/sh ghcr.io/tigerbeetle/tigerbeetle:${{ needs.read-versions.outputs.tigerbeetle }} -c \
+            --entrypoint=/bin/sh ghcr.io/tigerbeetle/tigerbeetle:${{ matrix.version }} -c \
             "mkdir -p /data && /tigerbeetle format --cluster=1 --replica=0 --replica-count=1 /data/0_0.tigerbeetle"
 
           docker cp tb-formatter:/data/0_0.tigerbeetle ./tigerbeetle/
@@ -104,7 +104,7 @@ jobs:
         with:
           context: ./tigerbeetle
           push: true
-          tags: ghcr.io/code-growers/fast_test_containers/tigerbeetle-test:${{ needs.read-versions.outputs.tigerbeetle }}
+          tags: ghcr.io/code-growers/fast_test_containers/tigerbeetle-test:${{ matrix.version }}
           build-args: TB_VERSION=${{ matrix.version }}
           platforms: linux/amd64,linux/arm64
           cache-from: type=gha
@@ -142,7 +142,7 @@ jobs:
         with:
           context: ./keycloak
           push: true
-          tags: ghcr.io/code-growers/fast_test_containers/keycloak-test:${{ needs.read-versions.outputs.keycloak }}
+          tags: ghcr.io/code-growers/fast_test_containers/keycloak-test:${{ matrix.version }}
           build-args: KC_VERSION=${{ matrix.version }}
           platforms: linux/amd64,linux/arm64
           cache-from: type=gha
