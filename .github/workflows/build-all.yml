@@ -22,8 +22,8 @@ jobs:
         id: versions
         run: |
           echo "postgresql=$(jq -c '.postgresql' versions.json)" >> "$GITHUB_OUTPUT"
-          echo "keycloak=$(jq -r '.keycloak' versions.json)" >> "$GITHUB_OUTPUT"
-          echo "tigerbeetle=$(jq -r '.tigerbeetle' versions.json)" >> "$GITHUB_OUTPUT"
+          echo "keycloak=$(jq -c '.keycloak' versions.json)" >> "$GITHUB_OUTPUT"
+          echo "tigerbeetle=$(jq -c '.tigerbeetle' versions.json)" >> "$GITHUB_OUTPUT"
 
   build-postgresql:
     runs-on: ubuntu-latest
